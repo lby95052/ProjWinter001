@@ -56,19 +56,19 @@ clean:
 
 同时需要打开msys2.exe  输入 pacman -S make 和 Y
 
-之后在终端使用make![image-20210214021056033](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210214021056033.png)
+之后在终端使用make![image-20210214021056033](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214030700.png)
 
 之后选择运行中的非调试运行即可
 
 ## 需要注意的是
 
-![image-20210214021218586](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210214021218586.png)
+![image-20210214021218586](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214030647.png)
 
 在launch.json中需要修改几项参数
 
-![image-20210214021406783](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210214021406783.png)
+![image-20210214021406783](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214030637.png)
 
-![image-20210214021425620](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210214021425620.png)
+![image-20210214021425620](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214030642.png)
 
 以上
 
