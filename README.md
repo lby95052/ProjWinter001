@@ -90,8 +90,6 @@ clean:
 
 搜索了文档，发现了一些坑像是picgo上传出错的这样的坑
 
-![img](E:\QQ个人\914595052\Image\C2C\`LB446`YXRfile:///E:\QQ个人\914595052\Image\C2C\`LB446`YXR$23473R%K~3473R%K~)2V.png)
-
 **GitHub 官方表示，从今年 10 月 1 日起，在该平台上创建的所有新的源代码仓库将默认被命名为 “main”，而不是原先的"master"。值得注意的是，现有的存储库不会受到此更改影响。**
 
 所以出现的问题是因为，分支名应该是：main，而不是master。
@@ -153,6 +151,6 @@ clean:
 
 
 
-![image-20210214232203846](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210214232203846.png)
+![image-20210214232203846](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214232336.png)
 
 之后就可以正常访问了
