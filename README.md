@@ -107,3 +107,52 @@ clean:
 以上
 
 #---------------------------------------------------------------------------------------------------------------------------------------#
+
+## 2021/2/14 晚上21:13分
+
+### 编写fileread.c
+
+#### 踩的坑和一些调试错误
+
+1. 使用\#include"head.h" 在不同的文件里使用head.h
+
+2. 关于打开文件
+
+   
+
+   开始想使用user_login.txt这个文件名直接打开同目录下的txt文档，
+
+   
+
+   同时想使用一个带有char*类型的指针变量的无返回值函数来实现在main函数中对打开文件的修改
+
+   发现完全行不通
+
+   
+
+   首先在主函数调用void fileread()函数使用了user_login.txt，参数倒是传过去了，但是使用fpOPen函数完全打不开
+
+   之后尝试了使用文件绝对路径后打开成功
+
+   并且成功读取了txt文件的数据，后来尝试在主函数的参数中使用绝对路径![image-20210214230726961](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214231931.png)
+
+   之后发现传倒是传过去了还是打不开
+
+   没办法，只能将fileread函数内部打开的路径先写死，之后在测试有没有其他方法可以解决这个问题
+
+   ![image-20210214231229433](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214231229.png)
+
+   算是初步编写成了fileread.c
+
+3. 同时解决了昨天的图片上传后在本地无法显示的问题
+
+![image-20210214231948351](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214231948.png)
+
+简单的说就是域名被DNS污染了
+具体解决方式是在hosts文件加上：199.232.4.133 raw.githubusercontent.com
+
+
+
+![image-20210214232203846](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210214232203846.png)
+
+之后就可以正常访问了
