@@ -154,3 +154,135 @@ clean:
 ![image-20210214232203846](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210214232336.png)
 
 之后就可以正常访问了
+
+## 2021/2/14 12:15分
+
+#### 
+
+### fgets函数语法
+
+#### 函数原型
+
+```c
+char *fgets(char *str, int n, FILE *stream);
+```
+
+
+
+- **str**-- 这是指向一个字符数组的指针，该数组存储了要读取的字符串。
+- **n**-- 这是要读取的最大字符数（包括最后的空字符）。通常是使用以 str 传递的数组长度。
+- **stream**-- 这是指向 FILE 对象的指针，该 FILE 对象标识了要从中读取字符的流。
+
+#### 功能
+
+从指定的流 stream 读取一行，并把它存储在**str**所指向的字符串内。当读取**(n-1)**个字符时，或者读取到换行符时，或者到达文件末尾时，它会停止，具体视情况而定。
+
+### sscanf函数语法
+
+#### 函数原型
+
+```c
+int sscanf (const char *str,const char * format,........); 
+```
+
+- **str**-- 这是指向一个字符数组的指针，该数组存储了要读取的字符串。
+
+#### 功能
+
+sscanf读取格式化的字符串中的数据
+
+（1）sscanf("zhoue3456 ", "%4s", str); //取指定长度的字符串    
+     printf("str=%s\n", str);  //str="zhou";
+
+（2）sscanf("zhou456 hedf", "%[^ ]", str); //取到指定字符为止的字符串,取遇到空格为止字符串   
+     printf("str=%s\n", str);  //str=zhou456;
+
+（3）sscanf("654321abcdedfABCDEF", "%[1-9a-z]", str); //取仅包含指定字符集的字符串
+     printf("str=%s\n", str);  //str=654321abcded，只取数字和小写字符
+
+（4）sscanf("BCDEF123456abcdedf", "%[^a-z]", str); //取到指定字符集为止的字符串    
+      printf("str=%s\n", str);  //  str=BCDEF123456, 取遇到大写字母为止的字符串
+
+（5）int a,b,c;
+     sscanf("2015.04.05", "%d.%d.%d", &a,&b,&c); //取需要的字符串  
+     printf("a=%d,b=%d,c=%d",a,b,c);  //  a=2015,b=4,c=5
+
+通过上面这几个例子相信大家对sscanf的用法会有一个直观的理解了,下面我们再来看一下更复杂一些的例子：
+
+https://blog.csdn.net/zhouwei1221q/article/details/44890617
+
+#### fileread.c
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include "head.h"
+// #define LENGTH 30
+
+// typedef struct User_login{
+// char name[LENGTH]; //用户名
+// int totalcount; //登录次数
+// }SDataType; //链表的节点
+
+void fileread(const char *filename)
+{
+	FILE *fp;
+
+	printf("try fileread\n");
+
+	// char line[1024] = {0}; //save file data
+
+	// SDataType data01;
+
+	int i, r_n = 0;
+	char buf[LENGTH];
+	char c;
+
+	printf("%s is file path\n", filename);
+
+	if ((fp = fopen("E:\\gitmannager\\ProjWinter001\\user_login.txt", "r+")) == NULL)
+	{
+		printf("Cannot open this file\n");
+	}
+	else
+	{
+
+		printf("OPEN This file is OK\n");
+		printf("计算文件中数据的行数\n");
+		//计算文件中数据的行数
+		while (!feof(fp))
+		{
+			c = fgetc(fp);
+			if (c == '\n')
+				r_n++;
+		}
+		printf("r_n=%d\n", r_n);
+
+		rewind(fp); //将指针重置到第一行
+
+		struct User_login *line1 = NULL;
+
+		line1 = (struct User_login *)malloc(sizeof(struct User_login) * (r_n + 1)); //创建一个结构体含有(r_n+1)个数据的空间
+
+		for (i = 1; i <= r_n; i++)
+		{
+			fgets(buf, LENGTH, fp);//一次读取一行数据到buf
+			sscanf(buf, "%[^,]", &line1[i].name); //跳过,读取数据
+			printf("save %s to buf\n", line1[i].name);
+		}
+		printf("文件读取结束\n");
+
+		for (i = 1; i <= r_n - 1; i++)
+		{
+
+		printf("\n%s ", line1[i].name);
+
+		}
+
+		if (fclose(fp))
+			printf("file close error!\n");
+	}
+}
+```
+
+![image-20210215123804517](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215123811.png)
