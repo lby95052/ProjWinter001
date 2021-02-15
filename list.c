@@ -8,7 +8,7 @@
 // int totalcount; //登录次数
 // }SDataType; //链表的节点
 
-void fileread(const char *filename)
+void fileread(char *buf)
 {
 	FILE *fp;
 
@@ -19,10 +19,10 @@ void fileread(const char *filename)
 	// SDataType data01;
 
 	int i, r_n = 0;
-	char buf[LENGTH];
+	// char buf[LENGTH];
 	char c;
 
-	printf("%s is file path\n", filename);
+	// printf("%s is file path\n", buf);
 
 	if ((fp = fopen("E:\\gitmannager\\ProjWinter001\\user_login.txt", "r+")) == NULL)
 	{

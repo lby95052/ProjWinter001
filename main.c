@@ -14,12 +14,16 @@
 // struct SListNode* _PNext;
 // }Node,*PNode; //封装链表节点和 next 指针
 
-void fileread(const char* filename);
+void fileread(char* buf);
 int  main(void){
+
+    char buf[LENGTH];
 
     printf("file open\n");
     //struct User_login Datanode;
-    fileread("E:\\gitmannager\\1242\\user_login.txt");
+    
+    fileread(buf);
+
 	//return 0;
     getchar();
     
