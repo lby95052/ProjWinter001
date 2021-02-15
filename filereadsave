@@ -7,7 +7,7 @@
 // char name[LENGTH]; //用户名
 // int totalcount; //登录次数
 // }SDataType; //链表的节点
-void list();
+
 void fileread(const char *filename)
 {
 	FILE *fp;
@@ -18,11 +18,11 @@ void fileread(const char *filename)
 
 	// SDataType data01;
 
-	int  r_n = 0;
-	// char buf[LENGTH];
+	int i, r_n = 0;
+	char buf[LENGTH];
 	char c;
 
-	// printf("%s is file path\n", filename);
+	printf("%s is file path\n", filename);
 
 	if ((fp = fopen("E:\\gitmannager\\ProjWinter001\\user_login.txt", "r+")) == NULL)
 	{
@@ -43,26 +43,25 @@ void fileread(const char *filename)
 		printf("r_n=%d\n", r_n);
 
 		rewind(fp); //将指针重置到第一行
-		printf("正在跳转到list.c\n");
-        list(fp, r_n);
-		// struct User_login *line1 = NULL;
 
-		// line1 = (struct User_login *)malloc(sizeof(struct User_login) * (r_n + 1)); //创建一个结构体含有(r_n+1)个数据的空间
+		struct User_login *line1 = NULL;
 
-		// for (i = 1; i <= r_n; i++)
-		// {
-		// 	fgets(buf, LENGTH, fp);//一次读取一行数据到buf
-		// 	sscanf(buf, "%[^,]", &line1[i].name); //跳过,读取数据
-		// 	printf("save %s to buf\n", line1[i].name);
-		// }
-		// printf("文件读取结束\n");
+		line1 = (struct User_login *)malloc(sizeof(struct User_login) * (r_n + 1)); //创建一个结构体含有(r_n+1)个数据的空间
 
-		// for (i = 1; i <= r_n - 1; i++)
-		// {
+		for (i = 1; i <= r_n; i++)
+		{
+			fgets(buf, LENGTH, fp);//一次读取一行数据到buf
+			sscanf(buf, "%[^,]", &line1[i].name); //跳过,读取数据
+			printf("save %s to buf\n", line1[i].name);
+		}
+		printf("文件读取结束\n");
 
-		// printf("\n%s ", line1[i].name);
+		for (i = 1; i <= r_n - 1; i++)
+		{
 
-		// }
+		printf("\n%s ", line1[i].name);
+
+		}
 
 		if (fclose(fp))
 			printf("file close error!\n");

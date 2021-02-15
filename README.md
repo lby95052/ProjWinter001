@@ -286,3 +286,51 @@ void fileread(const char *filename)
 ```
 
 ![image-20210215123804517](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215123811.png)
+
+## 2021/2/15 22:25分
+
+### 初步编写list.c
+
+#### 关于单链表踩的一些坑
+
+![image-20210215223403413](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215223403.png)
+
+在昨天编写的fileread.c中对后半段进行了修改
+
+将读取文件和打印输出的功能放入了list.c中，使用参数将文件指针fp和文件读取长度数据r_n传入到lis.c中
+
+需要提前声明list函数的存在
+
+![image-20210215224300860](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215224300.png)
+
+![image-20210215223845399](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210215223845399.png)
+
+先申请数量为文件数据长度的结构体数组内存空间来存放读取的数据
+
+![image-20210215224034038](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210215224034038.png)
+
+之后就是常规的链表的创建
+
+需要注意的是在
+
+#### 在申请空间时，需要使用完整的struct SListNode结构体名来声明
+
+否则会报意想不到的错误 例如不允许使用不完整的类型
+
+![image-20210215225504035](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215225504.png)
+
+输出链表如上，但是出现了一个错误
+
+![image-20210215225555044](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215225555.png)
+
+这我就不知道咋回事了。。。
+
+简单检查一下之后发现
+
+![image-20210215230652727](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215230652.png)
+
+总的来说就是预先定义的结构体里数据长度给定
+
+![image-20210215230751294](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215230751.png)
+
+由于之前截取数据时候只截取了用户名所所以在30个长度内后面的数据地址啥的完全不知道咋回事所以出了错
