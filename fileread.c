@@ -41,6 +41,7 @@ void fileread(const char *filename)
 				r_n++;
 		}
 		printf("r_n=%d\n", r_n);
+		r_n+=1;
 
 		rewind(fp); //将指针重置到第一行
 		printf("正在跳转到list.c\n");

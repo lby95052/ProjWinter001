@@ -340,3 +340,17 @@ void fileread(const char *filename)
 ![image-20210216180220194](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210216180317.png)
 
 解决不了，先存个档
+
+
+
+![image-20210216230415021](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210216230415.png)
+
+发现了出现的问题
+
+原因是在建立链表时候的尾节点没有指向NULL，所截取的数据中在循环的访问了并不存在的储存空间所以报错
+
+
+
+![image-20210216234358480](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210216234358480.png)
+
+销毁链表成功
