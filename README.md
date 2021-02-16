@@ -334,3 +334,9 @@ void fileread(const char *filename)
 ![image-20210215230751294](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210215230751.png)
 
 由于之前截取数据时候只截取了用户名所所以在30个长度内后面的数据地址啥的完全不知道咋回事所以出了错
+
+## 2021/2/16 18:25分
+
+![image-20210216180220194](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210216180317.png)
+
+解决不了，先存个档
