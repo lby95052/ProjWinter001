@@ -14,6 +14,8 @@
 // SDataType _data;
 // struct SListNode* _PNext;
 // }Node,*PNode; //封装链表节点和 next 指针
+
+
 void PrintLIST(struct SListNode *head);
 void list(FILE *fp1, int data_lenghth)
 {
@@ -99,11 +101,29 @@ void list(FILE *fp1, int data_lenghth)
   
 
   printf("链表建立结束\n");
-
   printf("输出链表\n");
+  printf("\n");
 
   PrintLIST(head);
   printf("输出链表结束\n");
+  printf("\n");
+  
+  printf("查找链表\n");
+
+  char name;
+  name = "Rebecca";
+
+  FindNode(head,name);
+
+  // struct SListNode *Nodefind;
+
+  // Nodefind = FindNode(head,name);
+  // printf("查找到了 %S \n",Nodefind->_data.name);
+
+  
+  printf("查找链表结束\n");
+
+
 
   printf("销毁链表\n");
   FreeList(head);
@@ -209,6 +229,22 @@ void PrintLIST(struct SListNode *head)
   // 	p=head->_PNext;
   // }
 }
+
+void FindNode(struct SListNode *head, char name)
+{
+	struct SListNode *temp = head;
+	while(temp !=NULL)
+	{
+	if(name == temp->_data.name)
+	{
+		printf("查到了 名字是 %s\n", temp->_data.name);
+	}
+	temp = temp->_PNext;
+	}
+	//没找到
+		printf("没找到\n");
+} 
+
 
 void FreeList(struct SListNode *head)
 {
