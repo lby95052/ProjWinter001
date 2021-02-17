@@ -354,3 +354,12 @@ void fileread(const char *filename)
 ![image-20210216234358480](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210216234358480.png)
 
 销毁链表成功
+
+## 2021/2/17 23:55分
+
+### 编写findnode查找指定节点
+
+编写完毕，但是查找不出来
+
+![image-20210217235804495](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210217235804495.png)
+
