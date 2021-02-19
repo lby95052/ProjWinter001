@@ -465,3 +465,18 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 
 
 
+### 出大问题。。
+
+![image-20210219230504415](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210219230504.png)
+
+在编写增加链表节点时
+
+在函数内部使用遍历遍历函数时候可以将增加节点后的表头输出完全
+
+但是在销毁链表时候
+
+
+
+![image-20210219231148146](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210219231148146.png)
+
+出现了错误。。。

@@ -138,6 +138,14 @@ printf("增加节点结束\n");
 //   printf("\n");
 
 
+  printf("输出链表\n");
+  printf("\n");
+
+  PrintLIST(head);
+  printf("输出链表结束\n");
+  printf("\n");
+
+
 
   printf("销毁链表\n");
   FreeList(head);
@@ -318,6 +326,8 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 		temp->_PNext=s; 
 		free(p); 
 		printf("\n已经删除该记录的信息."); 
+    printf("\n遍历删除后新表."); 
+    PrintLIST(head);
 	} 
 	return; 
 } 
