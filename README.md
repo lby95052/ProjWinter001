@@ -363,3 +363,105 @@ void fileread(const char *filename)
 
 ![image-20210217235804495](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210217235804495.png)
 
+## 2021/2/19 21：24
+
+### 编写查找链表成功
+
+#### 18号家里有事情没写代码。。今天加个班=.=
+
+![image-20210219212535891](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210219212535.png)
+
+
+
+#### 有关查询数据返回值异常的问题解决
+
+昨天的程序中使用了条件判断符‘ == ’来对字符串进行判断
+
+并没有的到预期的返回值
+
+修改后，使用scanf输入，在判断过程中使用c语言库函数string中自带函数strcmp对字符串进行判断，得到合理的返回值，实现预期效果
+
+
+
+![image-20210219212628372](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210219212628.png)
+
+若输入错误的名字则显示没有查找到（到达链表末尾
+
+```c
+void FindNode(struct SListNode *head)
+{
+  struct SListNode *temp = head;
+  char name[30];
+  scanf("%s", name);
+
+  while (temp != NULL)
+  {
+    if (!strcmp(temp->_data.name, name))
+    {
+      printf("查到了 名字是 %s\n", temp->_data.name);
+      return;
+    }
+    temp = temp->_PNext;
+    if (temp == NULL)
+    {
+      printf("到达链表末尾,没有找到\n");
+      return;
+    }
+  }
+}
+
+```
+
+
+
+### 编写删除节点成功
+
+![image-20210219220400073](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210219220400.png)
+
+删除节点没啥好说的
+
+需要一个临时节点指向来存放指针，在使用strcmp比较遍历之后，将设置条件的指向空间free掉即可；
+
+```c
+
+void DelNode(struct SListNode *head)// 删除某名称的信息 
+{ 
+	struct SListNode *p=head,*temp=head,*s; 
+	char name1[LENGTH]; 
+	printf("\n请输入要删除的节点的名称:"); 
+	scanf("%s",name1); 
+	while(p)//查找该名称所在的结点 
+	{ 
+		if(!strcmp(p->_data.name,name1)) 
+			break; 
+		else 
+		{ 
+			temp=p; 
+			p=p->_PNext; 
+		} 
+    
+
+	}// end while 
+	if(!p)  
+	{ 
+		printf("\n不存在此名称的记录."); 
+		return; 
+	} 
+	LinePrint(p);//输出该名称的信息 
+	printf("\n请问真的要删除该记录么?(Y/N)"); 
+	char ch; 
+	fflush(stdin); 
+	scanf("%c",&ch); 
+	if(ch=='Y'||ch=='y') 
+	{ 
+		s=p->_PNext; 
+		temp->_PNext=s; 
+		free(p); 
+		printf("\n已经删除该记录的信息."); 
+	} 
+	return; 
+} 
+```
+
+
+
