@@ -16,6 +16,14 @@
 // }Node,*PNode; //封装链表节点和 next 指针
 
 void PrintLIST(struct SListNode *head);
+void FindNode(struct SListNode *head);
+void ElePrint(char str[]);
+int LinePrint(struct SListNode *ptr);
+void DelNode(struct SListNode *head);
+void DelNode(struct SListNode *head);
+void AddNode(struct SListNode *head);
+void FreeList(struct SListNode *head);
+
 void list(FILE *fp1, int data_lenghth)
 {
   // struct User_login *line1 = NULL;
@@ -109,10 +117,7 @@ void list(FILE *fp1, int data_lenghth)
 
   FindNode(head);
 
-  // struct SListNode *Nodefind;
-
-  // Nodefind = FindNode(head,name);
-  // printf("查找到了 %S \n",Nodefind->_data.name);
+ 
 
   printf("查找链表结束\n");
 
@@ -123,27 +128,18 @@ void list(FILE *fp1, int data_lenghth)
 
   printf("删除节点结束\n");
 
+  	printf("\n已经删除该记录的信息."); 
+    printf("\n遍历删除后新表."); 
+    PrintLIST(head);
+
 
 printf("增加节点\n");
   
 AddNode(head);
 
 printf("增加节点结束\n");
-
-//  printf("输出链表\n");
-//   printf("\n");
-
-//   PrintLIST(head);
-//   printf("输出链表结束\n");
-//   printf("\n");
-
-
-  printf("输出链表\n");
-  printf("\n");
-
-  PrintLIST(head);
-  printf("输出链表结束\n");
-  printf("\n");
+  printf("\n插入队头完毕，遍历新表\n"); 
+    PrintLIST(head);
 
 
 
@@ -158,35 +154,8 @@ printf("增加节点结束\n");
 
 void PrintLIST(struct SListNode *head)
 {
-  // struct SListNode *p = head;
-
-  // printf("p %s\n", p->_data.name); //1
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //2
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //3
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //4
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //5
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //6
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //7
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //8
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //9
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //10
-  // p = p->_PNext;
-  // printf("p %s\n", p->_data.name); //11
-  // printf("单步输出链表结束\n");
-
-  // p=p->_PNext;
-  // printf("p %s\n", p->_data.name);//12 出现 出现异常。Segmentation fault
-
-  printf("Q指向head\n");
+ 
+  printf("\nQ指向传入head\n");
   struct SListNode *Q = head;
   int i=0; //用来记录数据序号，并不存入链表中
   // printf("Q %s\n", Q->_data.name);
@@ -201,52 +170,7 @@ void PrintLIST(struct SListNode *head)
   }
   printf("循环输出链表结束\n");
 
-  // while(Q != NULL)
-  // {
-  //   Q = Q ->_PNext;
-
-  //   printf("Q %s\n", Q->_data.name);
-  // }
-
-  // while(Q)
-  // {
-  //   Q = Q ->_PNext;
-  //   printf("输出链表\n");
-
-  // }
-
-  // while(Q != NULL)
-  // {
-
-  //   Q = Q ->_PNext;
-  //   printf("Q %s\n", Q->_data.name);
-
-  // }
-
-  // do
-  // {
-
-  //   Q = Q->_PNext;
-  //   if (Q == NULL)
-  //   {
-  //     printf("达到链表末尾\n");
-  //     break;
-  //   }
-  //   printf("Q %s\n", Q->_data.name); //1
-
-  //   if (Q->_PNext == NULL)
-  //   {
-  //     printf("达到链表末尾\n");
-  //   }
-  // }while (Q != NULL);
-
-  // printf("head %s\n", head->_data.name);
-
-  // if(head!=NULL)
-  // {
-  // 	printf("%s\n", p->_data.name);
-  // 	p=head->_PNext;
-  // }
+  
 }
 
 void FindNode(struct SListNode *head)
@@ -324,12 +248,11 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 	{ 
 		s=p->_PNext; 
 		temp->_PNext=s; 
-		free(p); 
-		printf("\n已经删除该记录的信息."); 
-    printf("\n遍历删除后新表."); 
-    PrintLIST(head);
+		free(p);
+    head = temp;
+	
 	} 
-	return; 
+	
 } 
 
 
@@ -346,22 +269,26 @@ void AddNode(struct SListNode *head)
 	
 		printf("\n请输入该名称的姓名:"); 
 		scanf("%s",s->_data.name); 
-    printf("\n输入完毕，新名称为 %s:", s->_data.name); 
+    printf("\n输入完毕，新节点名称为 %s:", s->_data.name); \
+    s->_data.totalcount = 1;
 
 		ptr=head; 
 		head=s;//将新结点插入队头 
 		s->_PNext = ptr; 
 
-    printf("\n插入队头完毕，遍历新表\n"); 
-    PrintLIST(head);
+    // printf("\n插入队头完毕，遍历新表\n"); 
+    // PrintLIST(head);
 
 		fflush(stdin); //清空输入缓冲区，为了确保不影响后面的数据读取
 		printf("\n请问是否继续增加?(Y/N)"); 
 		scanf("%c",&ch); 
 	}while(ch=='Y'||ch=='y'); 
 
-	return; 
+ printf("\n增加完毕，输出新表"); 
+ PrintLIST(head);
+ 
 }
+
 
 
 
@@ -381,8 +308,8 @@ void FreeList(struct SListNode *head)
   //头尾清空	不然下次的头就接着0x10
   head = NULL;
 
-  printf("销毁成功，输出链表\n");
-  PrintLIST(head);
+  // printf("销毁成功，输出链表\n");
+  // PrintLIST(head);
 
 }
 
