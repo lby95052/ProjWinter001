@@ -480,3 +480,44 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 ![image-20210219231148146](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210219231148146.png)
 
 出现了错误。。。
+
+
+
+![image-20210220163822406](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220163829.png)
+
+
+
+## 2021/2/20 18:00
+
+编写增加node成功
+
+![image-20210220163934634](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220163934.png)
+
+![image-20210220164029988](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220164030.png)
+
+![image-20210220164134734](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220164134.png)
+
+![image-20210220170630369](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220170630.png)
+
+![image-20210220175735551](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220175735.png)
+
+![image-20210220175812714](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210220175812.png)
+
+找出原因了，有点复杂。我慢慢写
+
+总的来说我把之前的数据结构搞混了，在实现头插法时出现非法访问数据内存
+
+所以我将链表的数据结构进行了修改和创建遍历过程也一并进行了修改
+
+目前的数据结构使用了头指针指向一个空的没有存取任何数据的空节点head
+
+之后使用循环不断存取数据
+
+最后再将尾节点也设置 为一个没有存取任何数据的空节点，其中next指针指向NULL
+
+这样就可以方便的进行遍历和增删改查操作了
+
+之前的数据传输地址并没有错误
+
+是设计数据结构时候不够明确
+

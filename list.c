@@ -40,10 +40,10 @@ void list(FILE *fp1, int data_lenghth)
 
   int i = 1;
 
-  line1 = (struct User_login *)malloc(sizeof(struct User_login) * (data_lenghth + 1));
+  line1 = (struct User_login *)malloc(sizeof(struct User_login) * (data_lenghth));
   //③利用malloc ( )函数向系统申请分配一个节点
 
-  for (i = 1; i <= data_lenghth; i++)
+  for (i = 1; i < data_lenghth; i++)
   {
     fgets(buf, LENGTH, fp1);              //一次读取一行数据到buf
     sscanf(buf, "%[^,]", &line1[i].name); //从buf中跳过","读取数据
@@ -54,16 +54,16 @@ void list(FILE *fp1, int data_lenghth)
 
   struct SListNode *head = NULL;
 
-  struct SListNode *p1, *p2, *p3;
+  struct SListNode *p1, *p2;
 
   // head = (struct Node *)malloc(sizeof(Node)); /*新节点*/
 
   p1 = p2 = (struct SListNode *)malloc(sizeof(struct SListNode));
-  p3 = p1;
+  // p3 = p1;
   // while(scanf("%d",&p1->n)&&p1->n!=0)
   for (i = 1; i <= data_lenghth; i++)
   {
-    p1->_data = line1[i];
+    
 
     if (head == NULL)
       head = p1;
@@ -72,38 +72,19 @@ void list(FILE *fp1, int data_lenghth)
 
     p2 = p1;
     p1 = (struct SListNode *)malloc(sizeof(struct SListNode));
+    p1->_data = line1[i];
   }
+  p1 = (struct SListNode *)malloc(sizeof(struct SListNode));
+  // char c[LENGTH];
+  // strcpy(c, "tail")
+  // p1->_data.name = c;
+  // p1->_data.totalcount = 0;
+
+
   p2->_PNext = p1;
   p1->_PNext = NULL;
-  // p1 = NULL;
-  // head = p3;
-
-  // printf("检查p1输出链表\n\n");
-  //  while(p1 != NULL)
-  // {
-  //   p1 = p1 ->_PNext;
-  //   printf("输出链表\n");
-  //   printf("p1 %s\n", p1->_data.name);
-  // }
-  // printf("检查p1输出链表结束\n\n");
-
-  // printf("检查head输出链表\n");
-  // while(head != NULL)
-  // {
-  //   head = head ->_PNext;
-  //   printf("输出链表\n\n");
-  //   printf("p1 %s\n", head->_data.name);
-  // }
-  // printf("检查head输出链表结束\n\n");
-
-  //  printf("检查p3输出链表\n\n");
-  //  while(p3 != NULL)
-  // {
-  //   p3 = p3 ->_PNext;
-  //   printf("输出链表\n");
-  //   printf("p3 %s\n", p3->_data.name);
-  // }
-  // printf("检查p3输出链表结束\n\n");
+  p1 = NULL;
+  
 
   printf("链表建立结束\n");
   printf("输出链表\n");
@@ -159,6 +140,10 @@ void PrintLIST(struct SListNode *head)
   struct SListNode *Q = head;
   int i=0; //用来记录数据序号，并不存入链表中
   // printf("Q %s\n", Q->_data.name);
+
+  Q = Q->_PNext;
+  i++;
+  //移动到下一个节点
 
   while (Q->_PNext != NULL)
   {
@@ -256,10 +241,13 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 } 
 
 
-void AddNode(struct SListNode *head) 
+void AddNode(struct SListNode* head) 
 { 
+  int i;
 	char ch; 
-	struct SListNode *s,*ptr;  //s用来建新结点，ptr用来暂存头结点 
+  struct SListNode *s,*ptr;  //s用来建新结点，ptr用来暂存头结点 
+
+  struct SListNode *Q = head;
 
 	do 
 	{ 
@@ -267,14 +255,59 @@ void AddNode(struct SListNode *head)
 
 		printf("\n开始增加...");            //开始增加
 	
-		printf("\n请输入该名称的姓名:"); 
+		// printf("\n请输入该名称的姓名:"); 
+		// scanf("%s",s->_data.name); 
+    // printf("\n输入完毕，新节点名称为 %s:", s->_data.name); \
+    // s->_data.totalcount = 1;
+
+    //rearPtr 用来指向头节点，沿链表行进，最后用来指向最后一个非空节点
+	struct SListNode * rearPtr;
+	//nodePtr 用来指向新节点
+	struct SListNode * nodePtr;
+	//将头节点付给rearPtr，也就是让rearPtr指向头节点
+	rearPtr = head;
+	//当rearPtr的next为空时，说明这已经是最后一个节点
+	while (rearPtr->_PNext->_PNext != NULL){
+		//当rearPtr的next不为空时，rearPtr向后走
+		rearPtr = rearPtr->_PNext;
+	}
+	//出循环时，rearPtr已经指向了最后一个非空节点，这个节点有值，但是该节点的next为空
+	//给nodePtr分配空间
+	nodePtr = (struct SListNode*)malloc(sizeof(struct SListNode));
+  
+	//把数据存储在nodePtr指向的节点中的age
+
+  printf("\n请输入该名称的姓名:"); 
 		scanf("%s",s->_data.name); 
     printf("\n输入完毕，新节点名称为 %s:", s->_data.name); \
     s->_data.totalcount = 1;
 
-		ptr=head; 
-		head=s;//将新结点插入队头 
-		s->_PNext = ptr; 
+	nodePtr->_data = s->_data;
+
+	//把nodePtr的next置为空值
+	nodePtr->_PNext = rearPtr->_PNext;
+	//让rearPtr的next指向nodePtr，也就是把nodePtr连接到链表尾部，完成插入
+	rearPtr->_PNext = nodePtr;
+
+
+  //   while (Q->_PNext != NULL)
+  // {
+
+  //   printf("Q %s", Q->_data.name);
+  //   Q = Q->_PNext;
+  //   printf("        %d\n", i);
+  //   i++;
+  // }
+
+  // Q->_PNext = s; 
+  // s->_PNext = NULL;
+
+
+
+		// ptr=head; 
+		// head=s;//将新结点插入队头 
+		// s->_PNext = ptr; 
+
 
     // printf("\n插入队头完毕，遍历新表\n"); 
     // PrintLIST(head);
@@ -286,6 +319,7 @@ void AddNode(struct SListNode *head)
 
  printf("\n增加完毕，输出新表"); 
  PrintLIST(head);
+ return head; 
  
 }
 
