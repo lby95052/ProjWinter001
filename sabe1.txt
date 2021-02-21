@@ -1,0 +1,7 @@
+
+void DestroyListNode(ListNode* pNode){
+    if(pNode != NULL){
+        printf("-----delete list node [%d]-----\n", pNode->val);
+        free(pNode);
+    }
+}

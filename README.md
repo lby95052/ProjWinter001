@@ -521,3 +521,8 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 
 是设计数据结构时候不够明确
 
+## 2021/2/21 23:00
+
+![image-20210222002710914](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210222002718.png)
+
+编写合并节点函数

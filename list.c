@@ -94,42 +94,42 @@ void list(FILE *fp1, int data_lenghth)
   printf("输出链表结束\n");
   printf("\n");
 
-  printf("查找链表\n");
+//   printf("查找链表\n");
 
-  FindNode(head);
+//   FindNode(head);
 
  
 
-  printf("查找链表结束\n");
+//   printf("查找链表结束\n");
 
-  printf("删除节点\n");
+//   printf("删除节点\n");
 
-  DelNode(head);
-
-
-  printf("删除节点结束\n");
-
-  	printf("\n已经删除该记录的信息."); 
-    printf("\n遍历删除后新表."); 
-    PrintLIST(head);
+//   DelNode(head);
 
 
-printf("增加节点\n");
+//   printf("删除节点结束\n");
+
+//   	printf("\n已经删除该记录的信息."); 
+//     printf("\n遍历删除后新表."); 
+//     PrintLIST(head);
+
+
+// printf("增加节点\n");
   
-AddNode(head);
+// AddNode(head);
 
-printf("增加节点结束\n");
-  printf("\n插入队头完毕，遍历新表\n"); 
-    PrintLIST(head);
+// printf("增加节点结束\n");
+//   printf("\n插入队头完毕，遍历新表\n"); 
+//     PrintLIST(head);
 
 
 
-  printf("销毁链表\n");
-  FreeList(head);
-  printf("销毁链表结束\n");
+//   printf("销毁链表\n");
+//   FreeList(head);
+//   printf("销毁链表结束\n");
 
-  // printf("销毁链表\n");
-  // PrintLIST(head);
+DeleteDuplication(head);
+
 }
 
 
@@ -346,5 +346,114 @@ void FreeList(struct SListNode *head)
   // PrintLIST(head);
 
 }
+
+
+// #define LENGTH 30
+
+// typedef struct User_login{
+// char name[LENGTH]; //用户名
+// int totalcount; //登录次数
+// }SDataType; //链表的节点
+
+// typedef struct SListNode
+// {
+// SDataType _data;
+// struct SListNode* _PNext;
+// }Node,*PNode; //封装链表节点和 next 指针
+
+
+
+// void merge(struct SListNode* l1,struct SListNode l2)
+// {
+// 	Node *p, *q,*prev;
+// 	p = l1->head;  q = l2.head;
+//     //用l1来存储新的链表
+
+// 	while(p && q)
+// 	{
+// 		if(p->data < q->data)
+// 		{
+// 			prev = p;
+// 			p = p->next;
+
+// 		}
+// 		else if(p->data > q->data)
+// 		{
+// 			//我这里不破坏原链表用的方法是创建一个新的节点，将要插入的节点复制进去
+// 			Node* save = (Node*)malloc(sizeof(Node));
+// 			save->data = q->data;
+
+// 			q = q->next;
+// 			prev->next = save;
+// 			save->next = p;
+// 		}
+// 		else
+// 		{
+// 			prev = p;
+// 			p = p -> next;
+// 			q = q-> next;
+// 		}
+// 	} 
+
+// 	//将最后一个元素归到链表中
+// 	if(p)
+// 		q = p;
+	
+// 	while(q != NULL)
+// 	{
+// 		Node* save_tmp = (Node*)malloc(sizeof(Node));
+// 		save_tmp->data = q->data;
+// 		prev -> next = save_tmp;
+// 		save_tmp -> next = NULL;
+// 		prev = prev->next;
+// 		q = q->next;
+
+// 	}
+	
+
+// }
+
+
+
+void DestroyListNode(Node* pNode){
+    if(pNode != NULL){
+        printf("-----delete list node [%s]-----\n", pNode->_data.name);
+        free(pNode);
+    }
+}
+
+//删除无序链表中的重复节点，仅保留一个，使用2指针定位                           
+//考虑到这里需要用到测试框架，这里必须使用二级指针
+void DeleteDuplication(struct SListNode *pHead){
+    if(pHead == NULL)
+        return; 
+                     
+    //指向当前正在处理的节点；
+    struct SListNode* p = pHead;
+    //用于遍历p之后的节点；
+    struct SListNode* q = NULL;
+    struct SListNode* r = NULL;
+                     
+    while(p != NULL){
+        q = p;       
+        //若后面有节点与当前节点相同，将其统统删除
+        while(q->_PNext != NULL){
+            if(strcmp(q->_PNext->_data.name,p->_data.name)){   //if(q->_PNext->_data.name == p->_data.name)!strcmp(p->_data.name,name1)
+                //保存需要删掉的节点
+                r = q->_PNext;
+                //需要删掉的节点的前后节点相接
+                q->_PNext = r->_PNext;
+                DestroyListNode(r);
+            }        
+            else{    
+                q = q->_PNext;
+            }        
+        }            
+        p = p->_PNext; 
+    }                
+                     
+    // return *pHead;   
+}
+
 
 
