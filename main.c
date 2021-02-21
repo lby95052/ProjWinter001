@@ -16,6 +16,7 @@
 
 void fileread();
 void list();
+void filewrite();
 int  main(void){
 
     

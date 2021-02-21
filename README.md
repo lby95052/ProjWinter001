@@ -523,6 +523,74 @@ void DelNode(struct SListNode *head)// 删除某名称的信息
 
 ## 2021/2/21 23:00
 
+### 编写合并节点函数
+
 ![image-20210222002710914](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210222002718.png)
 
 编写合并节点函数
+
+
+
+![image-20210222004756942](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210222004757.png)
+
+编写合并节点完毕
+
+主要的思路大概是使用三个指针分别指向，指向当前正在处理的节点，遍历p之后的节点，保存当前处理节点数据
+
+使用双重循环在当前处理节点和链表之后节点不断做循环
+
+若后面有节点与当前正在处理的节点相同，将其统统删除
+
+保存了节点地址之后分别断接，，相连，销毁指定数据节点，增加节点count总数
+
+最后继续遍历下一个节点，直到遍历完链表
+
+
+
+步骤一基本完成
+
+## 2021/2/22 1:20
+
+### 编写写入文件函数，集成选项管理操作程序
+
+写入文件函数编写完毕，数据成功输出到result.txt
+
+![image-20210222023611054](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210222023611.png)
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include "head.h"
+// #define LENGTH 30
+
+// typedef struct User_login{
+// char name[LENGTH]; //用户名
+// int totalcount; //登录次数
+// }SDataType; //链表的节点
+
+void filewrite(struct SListNode *head)
+{
+
+   printf("\n已经跳转到filewrite.c!\n");
+   struct SListNode *p=head->_PNext;
+   FILE *w =fopen("E:\\gitmannager\\ProjWinter001\\result.txt","w");
+   if(w==NULL)
+   {
+       printf("打开文件失败!");
+       return; 
+   }
+   while(p->_PNext != NULL)
+   {
+       //输出链表节点数据到屏幕 
+       printf("%s,%d\n",p->_data.name,p->_data.totalcount);
+       //输出链表节点数据到文件output.txt 
+       fprintf(w,"%s,%d\n",p->_data.name,p->_data.totalcount);
+       p=p->_PNext;        
+   }     
+   printf("\n");
+   fprintf(w,"\n");
+   fclose(w);
+   return;
+}
+```
+

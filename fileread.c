@@ -8,6 +8,7 @@
 // int totalcount; //登录次数
 // }SDataType; //链表的节点
 void list();
+void filewrite();
 void fileread(const char *filename)
 {
 	FILE *fp;
