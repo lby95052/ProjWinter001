@@ -583,7 +583,7 @@ void filewrite(struct SListNode *head)
    {
        //输出链表节点数据到屏幕 
        printf("%s,%d\n",p->_data.name,p->_data.totalcount);
-       //输出链表节点数据到文件output.txt 
+       //输出链表节点数据到文件result.txt
        fprintf(w,"%s,%d\n",p->_data.name,p->_data.totalcount);
        p=p->_PNext;        
    }     
