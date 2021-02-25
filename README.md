@@ -594,3 +594,210 @@ void filewrite(struct SListNode *head)
 }
 ```
 
+![image-20210222025425383](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210222025425.png)
+
+## 2021/2/25 22:20
+
+### 看病，少写三天代码
+
+#### 编写集成管理菜单，优化代码结构
+
+##### 菜单代码
+
+```c
+void menu(struct SListNode *head)
+{
+    fflush(stdin);
+  int a;
+  printf("                     MENU\n");
+  printf("Enter the number before the option to continue\n");
+  printf("             [1] 输出链表\n");
+  printf("             [2] 查找链表\n");
+  printf("             [3] 删除节点\n");
+  printf("             [4] 增加节点\n");
+  printf("             [5] 删除节点\n");
+  printf("             [6] 销毁链表\n");
+  printf("             [7] 合并节点\n");
+  printf("             [8] 输出数据\n");
+  a = getche();
+  if (a == '1')
+  {
+
+    puts("");
+    printf("输出链表\n");
+    printf("\n");
+    PrintLIST(head);
+    printf("输出链表结束\n");
+    printf("\n");
+    menu(head);
+
+  }
+  else if (a == '2')
+  {
+
+    puts("");
+    printf("查找链表\n");
+    FindNode(head);
+    printf("查找链表结束\n");
+    menu(head);
+    
+  }
+  else if (a == '3')
+  {
+
+    puts("");
+    printf("删除节点\n");
+    DelNode(head);
+    printf("删除节点结束\n");
+    printf("\n已经删除该记录的信息.");
+    printf("\n遍历删除后新表.");
+    PrintLIST(head);
+    menu(head);
+  }
+  else if (a == '4')
+  {
+
+    puts("");
+    printf("增加节点\n");
+    AddNode(head);
+    printf("增加节点结束\n");
+    printf("\n插入队头完毕，遍历新表\n");
+    PrintLIST(head);
+    menu(head);
+  }
+  else if (a == '5')
+  {
+
+    puts("");
+    printf("删除节点\n");
+    DelNode(head);
+    printf("删除节点结束\n");
+    printf("\n已经删除该记录的信息.");
+    printf("\n遍历删除后新表.");
+    PrintLIST(head);
+    menu(head);
+  }
+  else if (a == '6')
+  {
+
+    puts("");
+    printf("销毁链表\n");
+    FreeList(head);
+    printf("销毁链表结束\n");
+    menu(head);
+
+  }
+  else if (a == '7')
+  {
+
+    puts("");
+    printf("合并节点\n");
+    DeleteDuplication(head);
+    printf("输出链表数据\n");
+    printf("\n");
+    PrintDATA(head);
+    menu(head);
+
+  }
+  else if (a == '8')
+  {
+
+    printf("正在跳转到filewrite.c\n");
+
+    return head;
+  }
+  else
+  {
+    printf("WRONG!\n");
+    puts("");
+    printf("合并节点\n");
+    DeleteDuplication(head);
+    printf("输出链表数据\n");
+    printf("\n");
+  }
+
+}
+```
+
+![image-20210225223657979](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210225223657979.png)
+
+
+
+管理效果如图
+
+##### 使用十万条数据进行测试
+
+![image-20210225223751242](C:\Users\91459\AppData\Roaming\Typora\typora-user-images\image-20210225223751242.png)
+
+![image-20210225223838256](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210225223838.png)
+
+![image-20210225223942339](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210225223942.png)
+
+![image-20210225224026577](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210225224026.png)
+
+测试结果如图
+
+优化后的代码结构由菜单集成管理
+
+方便了操作
+
+
+
+##### 编写冒泡排序BubbleSort.c
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include "head.h"
+
+void BubbleSort(struct SListNode *head)
+{
+    
+    Node *temp,*temp1,*temp2;
+    temp = head;
+    temp1 = head->_PNext;
+    temp2 = temp1->_PNext;
+    int flag=1;
+    while(flag)
+    {
+    flag = 0;
+    while(temp2)
+    {
+        if(temp1->_data.totalcount < temp2->_data.totalcount)//比较大小
+        {
+            temp1->_PNext = temp2->_PNext;
+            temp2->_PNext = temp1;//将指针指向
+            temp->_PNext = temp2;
+            flag=1;//重置循环
+        }
+        else
+        {
+        temp = temp1;//向下继续
+        }
+
+        temp1 = temp2;
+        temp2 = temp2->_PNext;
+    }
+    
+    }
+
+    return head;
+}
+
+```
+
+![image-20210225231038626](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210225231038.png)
+
+调试结果如图
+
+排序前
+
+![image-20210225231112498](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210225231112.png)
+
+
+
+
+
+排序后
+
+![image-20210225231129321](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210225231129.png)

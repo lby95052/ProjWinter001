@@ -14,10 +14,15 @@
 // struct SListNode* _PNext;
 // }Node,*PNode; //封装链表节点和 next 指针
 
-void fileread();
-void list();
-void filewrite();
+FILE* fileread();
+Node* list(FILE *fp1, struct SListNode *head);
+void filewrite(struct SListNode *head);
+void filewriteA(struct SListNode *head);
+void BubbleSort(struct SListNode *head);
 int  main(void){
+
+    struct SListNode *head = NULL;
+    FILE *fp1;
 
     
     // struct User_login *line1 = NULL;
@@ -25,11 +30,42 @@ int  main(void){
     printf("file open\n");
     //struct User_login Datanode;
 
-    fileread();
+    fp1 = fileread();
     printf("\n");
+
+    head = list(fp1, head);
+
+    filewrite(head);
+
+    BubbleSort(head);
+
+    filewriteA(head);
 
 
 	//return 0;
     getchar();
     
 }
+
+// void MENU(void){
+// 	fflush(stdin);
+// 	int a;
+// 	printf("                     MENU\n");
+// 	printf("Enter the number before the option to continue\n");
+// 	printf("             [1] Score Management\n");
+// 	printf("             [2] Score Statistics\n");
+// 	printf("             [3] Exit\n");
+// 	a=getche();
+// 	if(a=='1'){
+// 		puts("");
+// 		ScoreManagement();
+// 	}else if(a=='2'){
+// 		puts("");
+// 		ScoreStatistics();
+// 	}else if(a=='3'){
+// 		exit(1);
+// 	}else{
+// 		printf("WRONG!\n");
+// 		MENU();
+// 	}
+// }

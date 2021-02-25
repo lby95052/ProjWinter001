@@ -9,9 +9,9 @@
 // }SDataType; //链表的节点
 void list();
 void filewrite();
-void fileread(const char *filename)
+FILE* fileread()
 {
-	FILE *fp;
+	 FILE *fp;
 
 	printf("try fileread\n");
 
@@ -29,44 +29,12 @@ void fileread(const char *filename)
 	{
 		printf("Cannot open this file\n");
 	}
-	else
-	{
-
-		printf("OPEN This file is OK\n");
-		printf("计算文件中数据的行数\n");
-		//计算文件中数据的行数
-		while (!feof(fp))
-		{
-			c = fgetc(fp);
-			if (c == '\n')
-				r_n++;
-		}
-		printf("r_n=%d\n", r_n);
-		r_n+=1;
-
-		rewind(fp); //将指针重置到第一行
+	
 		printf("正在跳转到list.c\n");
-        list(fp, r_n);
-		// struct User_login *line1 = NULL;
+       
+		// if (fclose(fp))
+		// 	printf("file close error!\n");
 
-		// line1 = (struct User_login *)malloc(sizeof(struct User_login) * (r_n + 1)); //创建一个结构体含有(r_n+1)个数据的空间
-
-		// for (i = 1; i <= r_n; i++)
-		// {
-		// 	fgets(buf, LENGTH, fp);//一次读取一行数据到buf
-		// 	sscanf(buf, "%[^,]", &line1[i].name); //跳过,读取数据
-		// 	printf("save %s to buf\n", line1[i].name);
-		// }
-		// printf("文件读取结束\n");
-
-		// for (i = 1; i <= r_n - 1; i++)
-		// {
-
-		// printf("\n%s ", line1[i].name);
-
-		// }
-
-		if (fclose(fp))
-			printf("file close error!\n");
-	}
+		 return fp;
+	
 }

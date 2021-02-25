@@ -8,12 +8,12 @@
 // int totalcount; //登录次数
 // }SDataType; //链表的节点
 
-void filewrite(struct SListNode *head)
+void filewriteA(struct SListNode *head)
 {
 
-   printf("\n已经跳转到filewrite.c!\n");
+   printf("\n已经跳转到filewriteA.c!\n");
    struct SListNode *p=head->_PNext;
-   FILE *w =fopen("E:\\gitmannager\\ProjWinter001\\result.txt","w");
+   FILE *w =fopen("E:\\gitmannager\\ProjWinter001\\sort.txt","w");
    if(w==NULL)
    {
        printf("打开文件失败!");
