@@ -19,6 +19,7 @@ Node* list(FILE *fp1, struct SListNode *head);
 void filewrite(struct SListNode *head);
 void filewriteA(struct SListNode *head);
 void BubbleSort(struct SListNode *head);
+void QuickSort(struct SListNode *head);
 int  main(void){
 
     struct SListNode *head = NULL;
@@ -38,6 +39,9 @@ int  main(void){
     filewrite(head);
 
     BubbleSort(head);
+    //QuickSort(head);
+    //HeapSort(head);
+
 
     filewriteA(head);
 
