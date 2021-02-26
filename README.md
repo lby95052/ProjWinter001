@@ -935,3 +935,21 @@ void QuickSort1(struct SListNode *pBegin, struct SListNode *pEnd)
 ![image-20210226132622941](https://raw.githubusercontent.com/lby95052/ImageStore/main/img/20210226132630.png)
 
 排序效果如图
+
+
+
+
+
+有关思考题
+
+
+
+1
+
+
+
+
+
+2
+
+对排序合并进行优化
